@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'doctor',
     'category',
     'district',
-    'language'
+    'language',
+    'schedule'
 ]
 
 MIDDLEWARE = [
