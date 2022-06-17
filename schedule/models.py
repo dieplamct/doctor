@@ -18,6 +18,7 @@ class Schedule(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        db_table = 'schdule'
         verbose_name = 'Schedule'
         verbose_name_plural = 'Schedule'
 
