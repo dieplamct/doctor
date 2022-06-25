@@ -25,10 +25,10 @@ class Migration(migrations.Migration):
                 ('frid', models.CharField(blank=True, max_length=100, null=True)),
                 ('satu', models.CharField(blank=True, max_length=100, null=True)),
                 ('sun', models.CharField(blank=True, max_length=100, null=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
                 ('doctor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='doctor.doctor')),
                 ('language', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='language.language')),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
             ],
             options={
                 'verbose_name': 'Schedule',
