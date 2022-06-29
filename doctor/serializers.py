@@ -4,8 +4,8 @@ from category.serializer import CatetorySerializer
 class MultipleDoctorsSerializer:
 
     @staticmethod
-    def  serialize(experiences):
-        return [DoctorSerializer.serialize(experience) for experience in experiences]
+    def serialize(doctors):
+        return [DoctorSerializer.serialize(doctor) for doctor in doctors]
 
 
 class DoctorSerializer:
@@ -16,7 +16,7 @@ class DoctorSerializer:
                    'id': str(doctor.id),
                    'name': doctor.name,
                    'address': doctor.address,
-                   'phone': doctor.picture,
-                   'fee': doctor.fee,
+                   'phone': doctor.phone,
+                   'fee': str(doctor.fee),
                    'category': CatetorySerializer.serialize(doctor.category)
                }

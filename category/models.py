@@ -1,9 +1,11 @@
+from unicodedata import category
 from django.db import models
 
 from language.models import Language
 
 class Category(models.Model):
     active = models.BooleanField()
+    # category_translator = models.ForeignKey('CategoryTranslation', on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

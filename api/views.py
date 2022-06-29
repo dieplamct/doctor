@@ -4,7 +4,6 @@ import urllib.parse
 from django.http import HttpResponse
 from django.views import View
 
-
 class ViewWrapper(View):
 
     view_creator_func = None
@@ -16,7 +15,7 @@ class ViewWrapper(View):
         return HttpResponse(json.dumps(body), status=status, content_type='application/json')
 
     def post(self, request, *args, **kwargs):
-        kwargs.update(request.POST.dict())
+        kwargs.update(json.loads(request.body))
 
         body, status = self.view_creator_func(request, **kwargs).post(**kwargs)
         return HttpResponse(json.dumps(body), status=status, content_type='application/json')

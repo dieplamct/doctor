@@ -11,7 +11,8 @@ class CatetorySerializer:
 
         return {
                    'id': category.id,
-                   'active': category.active
+                   'active': category.active,
+                   'translated': MultipleCategoriesTranslatorSerializer.serialize(category.categorytranslation_set.all())
                }
 
 class CatetoryTranslationSerializer:
@@ -24,5 +25,11 @@ class CatetoryTranslationSerializer:
         return {
                    'name': category_translator.name,
                    'language': LanguageSerializer.serialize(category_translator.language),
-                   'category': CatetorySerializer.serialize(category_translator.category)
+                #    'category': CatetorySerializer.serialize(category_translator.category)
                }
+
+class MultipleCategoriesTranslatorSerializer:
+
+    @staticmethod
+    def serialize(categories):
+        return [CatetoryTranslationSerializer.serialize(category) for category in categories]

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
+from django.views.decorators.csrf import csrf_exempt
 
 from doctor.factories import create_doctor_view
 
@@ -23,7 +24,7 @@ from .views import ViewWrapper
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    re_path(r'^doctor/$',
-        ViewWrapper.as_view(view_creator_func=create_doctor_view),
+    re_path(r'^doctor',
+        csrf_exempt(ViewWrapper.as_view(view_creator_func=create_doctor_view)),
         name='doctor'),
 ]
