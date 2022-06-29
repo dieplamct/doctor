@@ -2,32 +2,27 @@ import json
 from doctor.models import Doctor
 from schedule.models import Schedule
 
-
-class GetAllDoctorInteractor:
+class GetDoctorInteractor:
     def __init__(self, doctor_repo):
         self.doctor_repo = doctor_repo
 
-    def set_params(self, id, district, category, price_range, language):
+    def set_params(self, id, district, category, fee, language):
         self.id = id
-        self.price_range = price_range
+        self.fee = fee
         self.language = language
         self.district = district
         self.category = category
         return self
     
-    def execute(self):
+    def get_doctor(self):
+        return self.doctor_repo.get_doctor(self.id,
+                                            self.fee,
+                                            self.district,
+                                            self.category,                                            
+                                            self.language)
+
+    def get_all_doctor(self):
         return self.doctor_repo.get_all_doctor()
-
-class GetDoctorInteractor:
-    def __init__(self, doctor_repo):
-        self.doctor_repo = doctor_repo
-
-    def set_params(self, id):
-        self.id = id
-        return self
-    
-    def execute(self):
-        return self.doctor_repo.get_doctor(self.id)
 
 class CreateNewDoctorInteractor:
     def __init__(self, doctor_repo, category_repo, district_repo, schedule_repo, language_repo):

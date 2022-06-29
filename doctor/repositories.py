@@ -10,18 +10,23 @@ class DoctorRepo:
                           phone=db_doctor.phone,
                           district=db_doctor.district,
                           fee=db_doctor.fee,
-                          category=db_doctor.category)
+                          category=db_doctor.category,
+                          language=db_doctor.language)
 
-    def get_doctor(self, id=None, free=None, district=None, category=None):
+    def get_doctor(self, id=None, fee=None, district=None, category=None, language=None):
         try:
             if id is not None:
-                return Doctor.objects.get(id=id)
-            elif free is not None:
-                return Doctor.objects.get(free=free)
+                return self._decode_db_doctor(Doctor.objects.get(id=id))
+            elif fee is not None:
+                return Doctor.objects.filter(fee=fee)
             elif district is not None:
-                return Doctor.objects.get(district=district)
+                return Doctor.objects.filter(district_id=district)
+            elif language is not None:
+                return Doctor.objects.filter(language_id=language)
+            elif category is not None:
+                return Doctor.objects.filter(category_id=category)
             else:
-                return Doctor.objects.get(category=category)        
+                return self._decode_db_doctor(Doctor.objects.first())
         except Doctor.DoesNotExist:
             raise EntityDoesNotExistException
 

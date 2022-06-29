@@ -17,18 +17,34 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.views.decorators.csrf import csrf_exempt
 
-from doctor.factories import create_doctors_view, create_doctor_view
+from doctor.factories import doctor_view
 
 from .views import ViewWrapper
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    re_path(r'^doctors',
-        csrf_exempt(ViewWrapper.as_view(view_creator_func=create_doctors_view)),
+    path('doctor/<int:id>',
+        ViewWrapper.as_view(view_func=doctor_view),
+        name='doctor'),
+    
+    re_path(r'^doctor/(?P<district>[0-9]+)',
+        ViewWrapper.as_view(view_func=doctor_view),
+        name='doctor'),
+    
+    re_path(r'^doctor/(?P<language>[0-9]+)',
+        ViewWrapper.as_view(view_func=doctor_view),
         name='doctor'),
 
-    path('doctor/<int:id>',
-        csrf_exempt(ViewWrapper.as_view(view_creator_func=create_doctor_view)),
+    re_path(r'^doctor/(?P<category>[0-9]+)',
+        ViewWrapper.as_view(view_func=doctor_view),
+        name='doctor'),
+    
+    re_path(r'^doctor/(?P<fee>[0-9]\D)',
+        ViewWrapper.as_view(view_func=doctor_view),
+        name='doctor'),
+    
+    path('doctor',
+        csrf_exempt(ViewWrapper.as_view(view_func=doctor_view)),
         name='doctor'),
 ]
