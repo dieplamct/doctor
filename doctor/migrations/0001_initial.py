@@ -24,6 +24,7 @@ class Migration(migrations.Migration):
                 ('fee', models.DecimalField(decimal_places=2, max_digits=19)),
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='category.category')),
                 ('district', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='district.district')),
+                ('language', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='language.language')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),                
             ],

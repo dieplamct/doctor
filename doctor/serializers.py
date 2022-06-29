@@ -1,4 +1,6 @@
 from category.serializer import CatetorySerializer
+from district.serializer import DistrictSerializer
+from language.serializer import LanguageSerializer
 
 
 class MultipleDoctorsSerializer:
@@ -18,5 +20,7 @@ class DoctorSerializer:
                    'address': doctor.address,
                    'phone': doctor.phone,
                    'fee': str(doctor.fee),
-                   'category': CatetorySerializer.serialize(doctor.category)
+                   'district': DistrictSerializer.serialize(doctor.district),
+                   'category': CatetorySerializer.serialize(doctor.category),
+                   'language': LanguageSerializer.serialize(doctor.language)
                }

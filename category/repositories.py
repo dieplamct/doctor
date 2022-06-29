@@ -6,8 +6,7 @@ class CategoryRepo:
 
     def _decode_db_category(self, db_category):
         return Category(id=db_category.id,
-                          active=db_category.active,
-                          translator=CategoryTranslatorRepo.get_category_translator(db_category.id))
+                          active=db_category.active)
 
     def get_category(self, category_id=None):
         try:

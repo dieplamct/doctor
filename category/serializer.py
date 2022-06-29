@@ -25,7 +25,6 @@ class CatetoryTranslationSerializer:
         return {
                    'name': category_translator.name,
                    'language': LanguageSerializer.serialize(category_translator.language),
-                #    'category': CatetorySerializer.serialize(category_translator.category)
                }
 
 class MultipleCategoriesTranslatorSerializer:

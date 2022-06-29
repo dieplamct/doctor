@@ -38,5 +38,6 @@ class DoctorRepo:
                                         phone=doctor.phone,
                                         district=doctor.district,
                                         fee=doctor.fee,
-                                        category=doctor.category)
+                                        category=doctor.category,
+                                        language=doctor.language)
         return self._decode_db_doctor(db_doctor)
